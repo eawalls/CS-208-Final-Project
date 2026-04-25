@@ -1,23 +1,20 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
-  ol
-  each val in todos
-    li
-      span= val.task + ' - '
-      if val.completed > 0
-        span Completed
-      else
-        span Not Completed
-      form(method='POST' action='/delete')
-        input(type='hidden', name='id', value=val.id)
-        button(type='submit') Delete
+  section.hero
+    .hero-content
+      h1 Freshly Glazed, Locally Loved.
+      p Bringing a cozy, modern twist to the downtown community since 1992.
+      .cta-buttons
+        a.btn-primary(href="/menu") View Menu
+        a.btn-secondary(href="https://ubereats.com" target="_blank") Order Online
 
-  hr
-  h2 Add a new task
-  form(method='POST' action='/create')
-    label(for='task') Task:
-    input(type='text', name='task', id='task', required)
-    button(type='submit') Create Task
+  section.featured
+    h2 Why Downtown Donuts?
+    .grid-layout
+      .card
+        h3 Hand-Crafted
+        p Every donut is made fresh daily with local ingredients.
+      .card
+        h3 Family Owned
+        p A staple of the downtown community for over 30 years.

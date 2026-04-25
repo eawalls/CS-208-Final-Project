@@ -1,6 +1,23 @@
 body {
-  padding: 50px;
+  display: flex;
+  padding: 10px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+main {
+  padding: 20px;
+}
+
+footer {
+  padding: 15px;
+  text-align: center;
+}
+
+.grid-container {
+  display: grid;
+  /* Left column takes 3 parts, right column takes 1 part */
+  grid-template-columns: 3fr 1fr; 
+  flex: 1; /* Pushes the footer down */
 }
 
 a {

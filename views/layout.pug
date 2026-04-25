@@ -3,5 +3,21 @@ html
   head
     title= title
     link(rel='stylesheet', href='/stylesheets/style.css')
+    meta(charset="UTF-8")
+
   body
+    header
+      nav.nav-container
+        a.logo(href="/") Downtown Donuts
+        ul.nav-links
+          li: a(href="/") Home
+          li: a(href="/menu") Menu
+          li: a(href="/about") Our Story
+          li: a(href="/comments") Community
+    .grid-container
+    
+  main
     block content
+
+  footer
+    p Downtown Donuts. Family-owned and operated since 1992.
