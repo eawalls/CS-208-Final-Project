@@ -1,23 +1,38 @@
 doctype html
-html
+html(lang="en")
   head
-    title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    title Downtown Donuts
     meta(charset="UTF-8")
-
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    link(rel='stylesheet', href='/stylesheets/style.css')
+  
   body
     header
       nav.nav-container
-        a.logo(href="/") Downtown Donuts
-        ul.nav-links
+        // Left Side Links
+        ul.nav-links.nav-left
           li: a(href="/") Home
           li: a(href="/menu") Menu
+        
+        // Centered Logo
+        a.logo(href="/")
+          img(src="/images/logo.png" alt="Downtown Donuts Logo")
+        
+        // Right Side Links
+        ul.nav-links.nav-right
           li: a(href="/about") Our Story
           li: a(href="/comments") Community
-    .grid-container
-    
-  main
-    block content
 
-  footer
-    p Downtown Donuts. Family-owned and operated since 1992.
+    .grid-container
+      main
+        block content
+      
+      // Adding the "options column" you mentioned earlier
+      aside.sidebar
+        h3 Order Now
+        ul
+          li: a(href="#") UberEats
+          li: a(href="#") DoorDash
+
+    footer
+      p Downtown Donuts. Family-owned and operated since 1992.
