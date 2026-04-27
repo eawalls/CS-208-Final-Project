@@ -53,4 +53,24 @@ router.post('/delete', function (req, res, next) {
     }
 });
 
+/* GET home page. */
+router.get('/', function(req, res, next) {
+  res.render('index');
+});
+
+/* GET menu page. */
+router.get('/menu', function(req, res, next) {
+  res.render('menu');
+});
+
+/* GET about page. */
+router.get('/about', function(req, res, next) {
+  res.render('about');
+});
+
+/* GET comments page. */
+router.get('/comments', function(req, res, next) {
+  res.render('comments');
+});
+
 module.exports = router;
