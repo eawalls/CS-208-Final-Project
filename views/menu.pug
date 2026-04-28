@@ -1,6 +1,8 @@
 extends layout
 
 block content
-  section.menu-section
-    h1 Menu
-    p Fresh donuts and artisan coffee, served daily since 1992.
+  section.menu-container
+    h1 Our Menu
+    
+    .pdf-wrapper
+      embed(src="/images/menu.pdf" type="application/pdf" width="100%" height="800px")
