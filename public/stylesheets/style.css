@@ -20,6 +20,16 @@ body {
   font-family: Montserrat Regular;
 }
 
+main {
+  padding: 40px;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #eee;
+}
+
 .nav-container {
   display: flex;
   align-items: center;
@@ -54,18 +64,34 @@ body {
   flex: 1;
 }
 
-main {
-  padding: 40px;
-}
-
 .sidebar {
   padding: 40px;
   background-color: #f9f9f9;
   border-left: 1px solid #ddd;
 }
 
-footer {
-  text-align: center;
-  padding: 20px;
-  background: #eee;
+.hero-content {
+  display: flex;
+  align-items: center;  
+  justify-content: center;
+  gap: 40px; 
+  margin-bottom: 50px;
+}
+
+.hero-text {
+  flex: 1; 
+}
+
+.hero-image img {
+  max-width: 450px;
+  width: 100%;
+  height: auto;
+  border-radius: 15px;    
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    text-align: center;
+  }
 }
