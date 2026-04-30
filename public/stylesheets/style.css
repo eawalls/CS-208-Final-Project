@@ -17,7 +17,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  font-family: Montserrat Regular;
+  font-family: 'Montserrat Regular';
 }
 
 main {
@@ -28,6 +28,7 @@ footer {
   text-align: center;
   padding: 20px;
   background: #eee;
+  font-family: 'Italianno Regular';
 }
 
 .nav-container {
@@ -70,19 +71,18 @@ footer {
   border-left: 1px solid #ddd;
 }
 
-.hero-content {
+.home-content {
   display: flex;
-  align-items: center;  
   justify-content: center;
   gap: 40px; 
   margin-bottom: 50px;
 }
 
-.hero-text {
+.home-text {
   flex: 1; 
 }
 
-.hero-image img {
+.home-image img {
   max-width: 450px;
   width: 100%;
   height: auto;
