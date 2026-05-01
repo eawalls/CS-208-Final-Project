@@ -2,5 +2,28 @@ extends layout
 
 block content
   section.comments-section
-    h1 Community
-    p Fresh donuts and artisan coffee, served daily since 1992.
+    h1 Customer Community
+    p We love hearing from our donut family!
+    
+    // General error message
+    if error
+      p.error-message= error
+
+    // Form for posting comments
+    form(action="/comments" method="POST")
+      // Customer name field
+      .form-group
+        label(for="name") Name:
+        input(type="text" name="name" id="name" required maxlength="50")
+      
+      // Comment message field
+      .form-group
+        label(for="comment") Message:
+        textarea(name="comment" id="comment" required maxlength="800" placeholder="Share your donut experience...")
+      
+      // Submit Comment
+      button(type="submit") Post Comment
+
+    hr
+
+    
