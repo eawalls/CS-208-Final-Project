@@ -89,6 +89,26 @@ footer {
   border-radius: 15px;    
 }
 
+.btn-load-more {
+  background-color: #0B2D1C;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: .8rem;
+  display: inline-block; 
+}
+
+.btn-menu {
+  background-color: #0B2D1C;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 25px;
+  font-weight: bold;
+  font-size: .8rem;
+  display: inline-block; 
+}
+
 @media (max-width: 768px) {
   .hero-content {
     flex-direction: column;
