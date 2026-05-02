@@ -1,55 +1,35 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next){
+// GET comments
+router.get('/comments', async (req, res) => {
   try {
-    req.db.query('SELECT * FROM todos;', (err, results) => {
-      if (err) {
-        console.error('Error fetching todos:', err);
-        return res.status(500).send('Error fetching todos');
-      }
-      res.render('index', { title: 'My Simple TODO', todos: results });
-    });
+    const comments = []; 
+    res.render('comments', { comments });
   } catch (error) {
-    console.error('Error fetching items:', error);
-    res.status(500).send('Error fetching items');
+    console.error('Error loading comments.', error);
+    res.status(500).send('Error loading comments.');
   }
 });
 
-router.post('/create', function (req, res, next) {
-    const { task } = req.body;
-    try {
-      req.db.query('INSERT INTO todos (task) VALUES (?);', [task], (err, results) => {
-        if (err) {
-          console.error('Error adding todo:', err);
-          return res.status(500).send('Error adding todo');
-        }
-        console.log('Todo added successfully:', results);
-        // Redirect to the home page after adding
-        res.redirect('/');
-      });
-    } catch (error) {
-      console.error('Error adding todo:', error);
-      res.status(500).send('Error adding todo');
-    }
-});
-
-router.post('/delete', function (req, res, next) {
-    const { id } = req.body;
-    try {
-      req.db.query('DELETE FROM todos WHERE id = ?;', [id], (err, results) => {
-        if (err) {
-          console.error('Error deleting todo:', err);
-          return res.status(500).send('Error deleting todo');
-        }
-        console.log('Todo deleted successfully:', results);
-        // Redirect to the home page after deletion
-        res.redirect('/');
-    });
+// POST comments
+router.post('/comments', async (req, res) => {
+  const { name, comment } = req.body;
+  // Require both fields to be filled in
+  if (!name.trim() || !comment.trim()) {
+    return res.render('comments', { error: "Fields cannot be empty.", comments: [] });
+  }
+  // Require less than 800 characters
+  if (comment.length > 800) {
+    return res.render('comments', { error: "Comment is too long (max 800 chars).", comments: [] });
+  }
+  // Generate timestamp
+  const timestamp = new Date().toLocaleString();
+  try {
+    res.redirect('/comments');
     }catch (error) {
-        console.error('Error deleting todo:', error);
-        res.status(500).send('Error deleting todo:');
+        console.error('Error adding comment.', error);
+        res.status(500).send('Error adding comment.');
     }
 });
 

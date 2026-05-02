@@ -26,4 +26,15 @@ block content
 
     hr
 
+  section.comments-list
+  // Check if the array exists and has items
+  if comments && comments.length > 0
+    each msg in comments
+      article.comment-card
+        h3= msg.name
+        small= msg.timestamp
+        p= msg.comment
+  else
+    p No comments yet. Be the first to share!
+
     
