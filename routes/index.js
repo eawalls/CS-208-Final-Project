@@ -2,35 +2,46 @@ var express = require('express');
 var router = express.Router();
 
 // GET comments
-router.get('/comments', async (req, res) => {
+router.get('/comments', function(req, res, next) {
   try {
-    const comments = []; 
-    res.render('comments', { comments });
+    req.db.query('SELECT * FROM comments ORDER BY id DESC;', (error, results) => {
+      if (error) {
+        console.error('Error fetching comments:', error);
+        return res.status(500).send('Error fetching comments');
+      }
+      res.render('comments', { comments: results });
+    });
   } catch (error) {
-    console.error('Error loading comments.', error);
-    res.status(500).send('Error loading comments.');
+    console.error('Error loading page:', error);
+    res.status(500).send('Error loading page');
   }
 });
 
 // POST comments
-router.post('/comments', async (req, res) => {
+router.post('/comments', function (req, res, next) {
   const { name, comment } = req.body;
-  // Require both fields to be filled in
-  if (!name.trim() || !comment.trim()) {
-    return res.render('comments', { error: "Fields cannot be empty.", comments: [] });
-  }
-  // Require less than 800 characters
-  if (comment.length > 800) {
-    return res.render('comments', { error: "Comment is too long (max 800 chars).", comments: [] });
-  }
-  // Generate timestamp
   const timestamp = new Date().toLocaleString();
+
+  // Require name and comment fields
+  if (!name || !name.trim() || !comment || !comment.trim()) {
+    return res.status(400).send('Name and Comment are required.');
+  }
+
   try {
-    res.redirect('/comments');
-    }catch (error) {
-        console.error('Error adding comment.', error);
-        res.status(500).send('Error adding comment.');
-    }
+    // Insert name, comment, and timestamp
+    req.db.query('INSERT INTO comments (name, comment, timestamp) VALUES (?, ?, ?);', 
+    [name, comment, timestamp], (err, results) => {
+      if (err) {
+        console.error('Error adding comment:', err);
+        return res.status(500).send('Error adding comment');
+      }
+      console.log('Comment added successfully:', results);
+      res.redirect('/comments');
+    });
+  } catch (error) {
+    console.error('Error processing request:', error);
+    res.status(500).send('Error adding comment');
+  }
 });
 
 /* GET home page. */
