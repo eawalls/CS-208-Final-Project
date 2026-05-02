@@ -3,13 +3,19 @@ var router = express.Router();
 
 // GET comments
 router.get('/comments', function(req, res, next) {
+  let limit = parseInt(req.query.limit) || 5; ;
+
   try {
-    req.db.query('SELECT * FROM comments ORDER BY id DESC;', (error, results) => {
+    req.db.query('SELECT * FROM comments ORDER BY id DESC LIMIT ?;', [limit], (error, results) => {
       if (error) {
         console.error('Error fetching comments:', error);
         return res.status(500).send('Error fetching comments');
       }
-      res.render('comments', { comments: results });
+
+      res.render('comments', { 
+        comments: results,
+        nextLimit: limit + 5
+      });
     });
   } catch (error) {
     console.error('Error loading page:', error);

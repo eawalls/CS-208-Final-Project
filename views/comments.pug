@@ -34,6 +34,9 @@ block content
         h3= msg.name
         small= msg.timestamp
         p= msg.comment
+    if comments.length >= 5
+      .pagination-container
+        a.btn-load-more(href=`/comments?limit=${nextLimit}`) Load More
   else
     p No comments yet. Be the first to share!
 
