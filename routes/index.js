@@ -45,7 +45,7 @@ router.post('/comments', function (req, res, next) {
       res.redirect('/comments');
     });
   } catch (error) {
-    console.error('Error processing request:', error);
+    console.error('Error processing request', error);
     res.status(500).send('Error adding comment');
   }
 });
